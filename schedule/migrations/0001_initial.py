@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import migrations, models
+from schedule.settings import CALENDAR_RELATION_FIELD_TYPE, EVENT_RELATION_FIELD_TYPE
 
 
 class Migration(migrations.Migration):
@@ -40,7 +41,7 @@ class Migration(migrations.Migration):
                         auto_created=True,
                     ),
                 ),
-                ("object_id", models.IntegerField()),
+                ("object_id", CALENDAR_RELATION_FIELD_TYPE()),
                 (
                     "distinction",
                     models.CharField(
@@ -151,7 +152,7 @@ class Migration(migrations.Migration):
                         auto_created=True,
                     ),
                 ),
-                ("object_id", models.IntegerField()),
+                ("object_id", EVENT_RELATION_FIELD_TYPE()),
                 (
                     "distinction",
                     models.CharField(

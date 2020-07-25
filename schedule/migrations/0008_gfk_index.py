@@ -1,4 +1,5 @@
 from django.db import migrations, models
+from schedule.settings import CALENDAR_RELATION_FIELD_TYPE, EVENT_RELATION_FIELD_TYPE
 
 
 class Migration(migrations.Migration):
@@ -12,12 +13,12 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="calendarrelation",
             name="object_id",
-            field=models.IntegerField(db_index=True),
+            field=CALENDAR_RELATION_FIELD_TYPE(db_index=True),
         ),
         migrations.AlterField(
             model_name="eventrelation",
             name="object_id",
-            field=models.IntegerField(db_index=True),
+            field=EVENT_RELATION_FIELD_TYPE(db_index=True),
         ),
         migrations.AlterIndexTogether(
             name="calendarrelation", index_together={("content_type", "object_id")}

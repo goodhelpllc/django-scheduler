@@ -13,6 +13,7 @@ from django.utils.translation import gettext, gettext_lazy as _
 
 from schedule.models.calendars import Calendar
 from schedule.models.rules import Rule
+from schedule.settings import EVENT_RELATION_FIELD_TYPE
 from schedule.utils import OccurrenceReplacer
 
 freq_dict_order = {
@@ -563,7 +564,7 @@ class EventRelation(models.Model):
 
     event = models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name=_("event"))
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.IntegerField(db_index=True)
+    object_id = EVENT_RELATION_FIELD_TYPE(db_index=True)
     content_object = fields.GenericForeignKey("content_type", "object_id")
     distinction = models.CharField(_("distinction"), max_length=20)
 

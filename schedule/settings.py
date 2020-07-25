@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.db.models import IntegerField
 
 # whether to display cancelled occurrences
 # (if they are displayed then they have a css class "cancelled")
@@ -64,3 +65,8 @@ USE_FULLCALENDAR = getattr(settings, "USE_FULLCALENDAR", False)
 
 # This name is used when a new event is created through selecting in fullcalendar
 EVENT_NAME_PLACEHOLDER = getattr(settings, "EVENT_NAME_PLACEHOLDER", "Event Name")
+
+# This the field that is used for object relations. Defaults to integer which fits most use cases
+# but is provided in case there's a need to use something like UUID.
+CALENDAR_RELATION_FIELD_TYPE = getattr(settings, "CALENDAR_RELATION_FIELD_TYPE", IntegerField)
+EVENT_RELATION_FIELD_TYPE = getattr(settings, "EVENT_NAME_PLACEHOLDER", IntegerField)

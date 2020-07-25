@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from schedule.settings import USE_FULLCALENDAR
+from schedule.settings import USE_FULLCALENDAR, CALENDAR_RELATION_FIELD_TYPE
 from schedule.utils import EventListManager
 
 
@@ -221,7 +221,7 @@ class CalendarRelation(models.Model):
         Calendar, on_delete=models.CASCADE, verbose_name=_("calendar")
     )
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.IntegerField(db_index=True)
+    object_id = CALENDAR_RELATION_FIELD_TYPE(db_index=True)
     content_object = fields.GenericForeignKey("content_type", "object_id")
     distinction = models.CharField(_("distinction"), max_length=20)
     inheritable = models.BooleanField(_("inheritable"), default=True)
