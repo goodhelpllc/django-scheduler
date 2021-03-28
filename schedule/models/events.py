@@ -56,6 +56,8 @@ class Event(models.Model):
         db_index=True,
         help_text=_("The end time must be later than the start time."),
     )
+    origin_timezone = models.CharField(_("source timezone"), max_length=140, default="UTC")
+    origin_isdst = models.BooleanField(_("source is dst active"), null=True, blank=True)
     title = models.CharField(_("title"), max_length=255)
     description = models.TextField(_("description"), blank=True)
     creator = models.ForeignKey(
